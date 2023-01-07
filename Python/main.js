@@ -8,11 +8,21 @@ async function fetchEngines() {
   const table = document.querySelector('#engine-table');
   for (const engine of engines) {
     const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${engine.id}</td>
-      <td>${engine.name}</td>
-      <td>${engine.manufacture_date}</td>
-    `;
+    const idCell = document.createElement('td');
+    idCell.textContent = engine.id;
+    row.appendChild(idCell);
+    const nameCell = document.createElement('td');
+    nameCell.textContent = engine.name;
+    row.appendChild(nameCell);
+    const manufactureDateCell = document.createElement('td');
+    const manufactureDateInput = document.createElement('input');
+    manufactureDateInput.type = 'text';
+    manufactureDateInput.value = engine.manufacture_date;
+    manufactureDateInput.addEventListener('change', () => {
+      updateEngine(engine.id, manufactureDateInput.value);
+    });
+    manufactureDateCell.appendChild(manufactureDateInput);
+    row.appendChild(manufactureDateCell);
     row.addEventListener('click', event => {
       // Remove the "selected" class from all rows
       const rows = table.querySelectorAll('tr');
@@ -26,6 +36,7 @@ async function fetchEngines() {
     table.appendChild(row);
   }
 }
+
 
 // Display the form to update the manufacture date of an engine
 function showUpdateForm(id) {
@@ -67,7 +78,6 @@ async function updateEngine(id, manufactureDate) {
     form.style.display = 'none';
     // Refresh the list of engines
     fetchEngines();
-    showUpdateForm(id)
   } else {
     alert('Error updating engine');
   }
