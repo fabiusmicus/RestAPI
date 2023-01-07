@@ -1,0 +1,8 @@
+1,Turboprop,1993-02-01
+2,Turbojet,2001-03-02
+3,Turbofan,2002-04-03
+4,Ramjet,2023-04-05
+5,Scramjet,1934-04-04
+6,Turbofan,1998-02-04
+7,Turbofan,1111-01-01
+8,Turbojet,2005-04-04
