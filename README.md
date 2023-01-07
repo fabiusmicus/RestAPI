@@ -3,5 +3,5 @@
 
 1. Install Python
 2. Install VSCode
-3. Setup Flask
+3. Setup Flask - https://flask.palletsprojects.com/en/2.2.x/installation/#
 4. Run app.py
