@@ -5,7 +5,7 @@
 2. Install VSCode
 3. Setup Flask - https://flask.palletsprojects.com/en/2.2.x/installation/#
 ```python
-pip3 install flask
+pip install flask
 ```
 4. Run app.py as Flask Web-Application
 5. Click on the IP Adress link in the VSCode Terminal
