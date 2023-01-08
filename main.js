@@ -6,6 +6,8 @@ async function fetchEngines() {
   const response = await fetch(`${API_URL}/engines`);
   const engines = await response.json();
   const table = document.querySelector('#engine-table');
+
+  // Loop over the engines and create a table with 3 data points for each engine
   for (const engine of engines) {
     const row = document.createElement('tr');
     const idCell = document.createElement('td');
@@ -15,12 +17,14 @@ async function fetchEngines() {
     nameCell.textContent = engine.name;
     row.appendChild(nameCell);
     const manufactureDateCell = document.createElement('td');
+    // Manufacture Date input field and listener to updateEngine()
     const manufactureDateInput = document.createElement('input');
     manufactureDateInput.type = 'text';
     manufactureDateInput.value = engine.manufacture_date;
     manufactureDateInput.addEventListener('change', () => {
       updateEngine(engine.id, manufactureDateInput.value);
     });
+    
     manufactureDateCell.appendChild(manufactureDateInput);
     row.appendChild(manufactureDateCell);
     row.addEventListener('click', event => {
@@ -31,27 +35,11 @@ async function fetchEngines() {
       }
       // Add the "selected" class to the clicked row
       row.classList.add('selected');
-      showUpdateForm(engine.id);
     });
     table.appendChild(row);
   }
 }
 
-
-// Display the form to update the manufacture date of an engine
-function showUpdateForm(id) {
-  const form = document.querySelector('#engine-form');
-  form.style.display = 'block';
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    const manufactureDate = document.querySelector('#manufacture-date-input').value;
-    updateEngine(id, manufactureDate);
-  });
-  const cancelButton = document.querySelector('#cancel-button');
-  cancelButton.addEventListener('click', event => {
-    form.style.display = 'none';
-  });
-}
 
 
 // Update the manufacture date of an engine using the API
@@ -82,7 +70,6 @@ async function updateEngine(id, manufactureDate) {
     alert('Error updating engine');
   }
 }
-
 
 
 fetchEngines();
